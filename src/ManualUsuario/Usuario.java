@@ -84,6 +84,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return nombre+"\n@"+idUsuario+"\nUbicacion; "+ubicacion+"\nSe unio: "+fechaCreacion;
+        return "\n"+nombre+"\n@"+idUsuario+"\nUbicacion; "+ubicacion+"\nSe unio: "+fechaCreacion+"\n";
     }
 }

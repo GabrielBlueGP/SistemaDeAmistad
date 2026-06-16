@@ -15,6 +15,10 @@ public class Conversacion {
         this.nivelCharla = 0;
     }
 
+    public void charlando(Usuario emisor, Usuario receptor){
+        System.out.println(emisor.getNombre()+" esta charlando con "+receptor.getNombre());
+    }
+
     public Usuario getEmisor() {
         return emisor;
     }

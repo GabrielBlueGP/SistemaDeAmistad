@@ -50,4 +50,14 @@ public class RelacionUsuario {
     public void setConfianza(int confianza) {
         this.confianza = confianza;
     }
+
+    @Override
+    public String toString() {
+        return "Relacion con: "+
+                usuarioRelacionado.getNombre()+
+                "| amigo: "+amigo+
+                "| loSigo: "+loSigo+
+                "| meSigue: "+meSigue+
+                "| confianza: "+confianza;
+    }
 }
