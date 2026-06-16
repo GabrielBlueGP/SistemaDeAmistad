@@ -1,3 +1,5 @@
+package ManualUsuario;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -78,5 +80,10 @@ public class Usuario {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    @Override
+    public String toString() {
+        return nombre+"\n@"+idUsuario+"\nUbicacion; "+ubicacion+"\nSe unio: "+fechaCreacion;
     }
 }

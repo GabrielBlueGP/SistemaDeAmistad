@@ -20,4 +20,11 @@ public class TemaConversacion {
     public void agregarTema(String tematica){
         temas.add(tematica);
     }
+
+    public void alistarTemas(){
+        System.out.println("-----Temas para charlar-----");
+        for(int ver = 0; ver < temas.size(); ver++){
+            System.out.println((ver + 1)+" - "+ temas.get(ver));
+        }
+    }
 }
