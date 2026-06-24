@@ -6,6 +6,8 @@ import ManualUsuario.Usuario;
 import Repositorios.RepositorioUsuario;
 import Servicios.ServicioUsuario;
 
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -38,5 +40,9 @@ public class Main {
         RepositorioUsuario repositorioUsuario = new RepositorioUsuario();
         ServicioUsuario servicioUsuario = new ServicioUsuario(repositorioUsuario);
         ControlUsuario controlUsuario = new ControlUsuario(servicioUsuario);
+        Scanner teclado = new Scanner(System.in);
+        String opcion;
+        System.out.print("Ingrese algo: ");
+        opcion = teclado.nextLine();
     }
 }

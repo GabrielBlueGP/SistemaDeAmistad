@@ -1,6 +1,7 @@
 package Servicios;
 
-import Excepciones.UsuarioExisteException;
+import Excepciones.CorreoExisteException;
+import Excepciones.IDExisteException;
 import ManualUsuario.Usuario;
 import Repositorios.RepositorioUsuario;
 
@@ -12,8 +13,12 @@ public class ServicioUsuario {
     }
 
     public void registrarUsuario(Usuario usuario){
-        if(repoUsuario.existeUsuario(usuario.getIdUsuario())) {
-            throw new UsuarioExisteException("Este usuario ya existe");
+        if(repoUsuario.existeID(usuario.getIdUsuario())) {
+            throw new IDExisteException("Este ID ya esta registrado");
+        }
+
+        if(repoUsuario.existeCorreo(usuario.getCorreo())){
+            throw  new CorreoExisteException("Este correo pertenece a otro usuario");
         }
         repoUsuario.guardar(usuario);
     }

@@ -29,12 +29,21 @@ public class RepositorioUsuario {
         }
     }
 
-    public boolean existeUsuario(String usuarioID){
+    public boolean existeID(String usuarioID){
         if(buscarPorId(usuarioID) != null){
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean existeCorreo(String correo){
+        for(Usuario u : usuarios.values()){
+            if(u.getCorreo().equals(correo)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
