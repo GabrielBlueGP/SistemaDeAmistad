@@ -3,6 +3,7 @@ package Controladores;
 import ConsolaEscritura.Consola;
 import Excepciones.CorreoExisteException;
 import Excepciones.IDExisteException;
+import Excepciones.UsuarioNoEncontrado;
 import ManualUsuario.Usuario;
 import Servicios.ServicioUsuario;
 
@@ -23,11 +24,41 @@ public class ControlUsuario {
             String ubicacion = pedirUbicacion();
             Usuario usuario = new Usuario(nombre, idUsuario, correo, contrasenia, ubicacion);
             servUsuario.registrarUsuario(usuario);
+            servUsuario.loginAutomatico(correo, contrasenia);
             System.out.println("Usuario registrado correctamente");
         } catch (IDExisteException e){
             System.out.println(e.getMessage());
         } catch (CorreoExisteException e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void menuSesion(){
+        Usuario user = null;
+        String correo;
+        while (user == null){
+            correo = pedirCorreo();
+            if(correo.equals("salir")){
+                return;
+            }
+            try {
+                user = servUsuario.hacerLogin(correo);
+            } catch (UsuarioNoEncontrado e) {
+                System.out.println(e.getMessage()+"\nintente con otro o haga \"salir\"");
+            }
+        }
+        int intentos = 3;
+        while (intentos > 0){
+            System.out.println("Intentos para su contraseña: "+intentos);
+            String contrasenia = pedirContrasenia();
+            if(contrasenia.equals(user.getContrasenia())){
+                break;
+            }
+            intentos--;
+            System.out.println("Contraseña incorrecta");
+        }
+        if (intentos == 0){
+            System.out.println("Fin de intentos. Acceso denegado");
         }
     }
 

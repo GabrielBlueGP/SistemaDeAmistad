@@ -24,17 +24,11 @@ public class RepositorioUsuario {
     }
 
     public void listar(){
-        for(Usuario usuario : usuarios.values()){
-            System.out.println(usuario);
-        }
+        usuarios.values().forEach(System.out::println);
     }
 
     public boolean existeID(String usuarioID){
-        if(buscarPorId(usuarioID) != null){
-            return true;
-        } else {
-            return false;
-        }
+        return buscarPorId(usuarioID) != null;
     }
 
     public boolean existeCorreo(String correo){
@@ -44,6 +38,15 @@ public class RepositorioUsuario {
             }
         }
         return false;
+    }
+
+    public Usuario buscarPorCorreo(String correo){
+        for(Usuario u : usuarios.values()){
+            if(u.getCorreo().equals(correo)){
+                return u;
+            }
+        }
+        return null;
     }
 
 }

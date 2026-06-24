@@ -2,6 +2,7 @@ package Servicios;
 
 import Excepciones.CorreoExisteException;
 import Excepciones.IDExisteException;
+import Excepciones.UsuarioNoEncontrado;
 import ManualUsuario.Usuario;
 import Repositorios.RepositorioUsuario;
 
@@ -21,5 +22,21 @@ public class ServicioUsuario {
             throw  new CorreoExisteException("Este correo pertenece a otro usuario");
         }
         repoUsuario.guardar(usuario);
+    }
+
+    public Usuario hacerLogin(String correo){
+        Usuario user = repoUsuario.buscarPorCorreo(correo);
+        if(user == null){
+            throw new UsuarioNoEncontrado("El usuario no fue encontrado");
+        }
+        return user;
+    }
+
+    public Usuario loginAutomatico(String correo, String contrasenia){
+        Usuario user = repoUsuario.buscarPorCorreo(correo);
+        if(user != null && user.getContrasenia().equals(contrasenia)){
+            return user;
+        }
+        return null;
     }
 }
