@@ -39,4 +39,12 @@ public class ServicioUsuario {
         }
         return null;
     }
+
+    public Usuario mostrarPerfil(String idUsuario){
+        return repoUsuario.mostrarPerfil(idUsuario);
+    }
+
+    public boolean nuevoCorreo(String correo){
+        return repoUsuario.existeCorreo(correo);
+    }
 }

@@ -49,4 +49,7 @@ public class RepositorioUsuario {
         return null;
     }
 
+    public Usuario mostrarPerfil(String idUsuario){
+        return buscarPorId(idUsuario);
+    }
 }

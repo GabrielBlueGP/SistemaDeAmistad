@@ -1,6 +1,7 @@
 package Controladores;
 
 import ConsolaEscritura.Consola;
+import ConsolaEscritura.Textos;
 import Excepciones.CorreoExisteException;
 import Excepciones.IDExisteException;
 import Excepciones.UsuarioNoEncontrado;
@@ -62,6 +63,34 @@ public class ControlUsuario {
         }
     }
 
+    public void menuDeUsuario(Usuario user){
+        String opcion;
+        do {
+            Textos.menuUsuario();
+            System.out.print("Ingrese la opcion: ");
+            opcion = Consola.teclado.nextLine();
+            switch (opcion) {
+                case "1":
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("                  perfil de usuario\n");
+                    System.out.println(servUsuario.mostrarPerfil(user.getIdUsuario()));
+                    System.out.println("--------------------------------------------------------");
+                    break;
+                case "2":
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("                  Modificar perfil\n");
+                    System.out.println("--------------------------------------------------------");
+                    break;
+                case "0":
+                    break;
+                default:
+                    break;
+            }
+        }
+        while (!opcion.equals("0"));
+    }
+
+
     private String pedirUsuarioID(){
         String idUsuario;
         do{
@@ -98,7 +127,6 @@ public class ControlUsuario {
             }
         } while(!contrasenia.matches("^\\S+$"));
         return contrasenia;
-
     }
 
     private String pedirUbicacion(){
@@ -113,5 +141,17 @@ public class ControlUsuario {
         } while(!ubicacion.matches("[a-zA-Z0-9 ]+"));
         return ubicacion;
 
+    }
+
+    private void modificarUsuario(){
+        String opcion;
+        do{
+            System.out.print("Ingrese la opcion del modificable: ");
+        } while(opcion.equals("0"));
+    }
+
+
+    private void  pedirNuevoCorreo(String correo){
+        servUsuario.nuevoCorreo(correo);
     }
 }
