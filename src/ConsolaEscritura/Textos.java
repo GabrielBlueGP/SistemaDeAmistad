@@ -18,9 +18,10 @@ public class Textos {
 
     public static void modificarPerfilUsuario(){
         System.out.println("1. Nombre");
-        System.out.println("3. Correo");
-        System.out.println("4. Contraseña");
-        System.out.println("5. Ubicacion");
+        System.out.println("2. Correo");
+        System.out.println("3. Contraseña");
+        System.out.println("4. Ubicacion");
+        System.out.println("0. Volver");
         System.out.println("--------------------------------------------------------");
     }
 }

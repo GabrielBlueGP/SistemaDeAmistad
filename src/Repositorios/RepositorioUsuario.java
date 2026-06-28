@@ -52,4 +52,20 @@ public class RepositorioUsuario {
     public Usuario mostrarPerfil(String idUsuario){
         return buscarPorId(idUsuario);
     }
+
+    public void nuevoNombre(Usuario user, String nombre){
+        user.setNombre(nombre);
+    }
+
+    public void nuevoCorreo(Usuario user, String correo){
+        user.setCorreo(correo);
+    }
+
+    public void nuevaContrasenia(Usuario user, String contrasenia){
+        user.setContrasenia(contrasenia);
+    }
+
+    public void nuevaUbicacion(Usuario user, String ubicacion){
+        user.setUbicacion(ubicacion);
+    }
 }

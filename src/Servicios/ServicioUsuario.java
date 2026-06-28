@@ -44,7 +44,25 @@ public class ServicioUsuario {
         return repoUsuario.mostrarPerfil(idUsuario);
     }
 
-    public boolean nuevoCorreo(String correo){
-        return repoUsuario.existeCorreo(correo);
+
+    public void modificarDatosUsuario(Usuario user, String nuevoDato, String opcion) {
+        switch (opcion){
+            case "1":
+                repoUsuario.nuevoNombre(user, nuevoDato);
+                break;
+            case "2":
+                if(repoUsuario.existeCorreo(nuevoDato)){
+                    throw  new CorreoExisteException("Este correo pertenece a otro usuario");
+                }
+                repoUsuario.nuevoCorreo(user, nuevoDato);
+                break;
+            case "3":
+                repoUsuario.nuevaContrasenia(user, nuevoDato);
+                break;
+            case "4":
+                repoUsuario.nuevaUbicacion(user, nuevoDato);
+                break;
+        }
     }
+
 }

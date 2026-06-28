@@ -143,15 +143,55 @@ public class ControlUsuario {
 
     }
 
-    private void modificarUsuario(){
-        String opcion;
-        do{
-            System.out.print("Ingrese la opcion del modificable: ");
-        } while(opcion.equals("0"));
+    private void modificarUsuario(Usuario user){
+        try{
+            String opcion;
+            do{
+                Textos.modificarPerfilUsuario();
+                System.out.print("Ingrese la opcion del modificable: ");
+                opcion = Consola.teclado.nextLine();
+                switch (opcion){
+                    case "1":
+                        System.out.println("--------------------------------------------------------");
+                        System.out.print("Ingrese su nuevo nombre: ");
+                        String nombre = Consola.teclado.nextLine();
+                        servUsuario.modificarDatosUsuario(user, nombre, opcion);
+                        System.out.println("--------------------------------------------------------");
+                        break;
+                    case "2":
+                        System.out.println("--------------------------------------------------------");
+                        System.out.print("Ingresa tu nuevo correo: ");
+                        String correo = pedirCorreo();
+                        servUsuario.modificarDatosUsuario(user, correo, opcion);
+                        System.out.println("--------------------------------------------------------");
+                        break;
+                    case "3":
+                        System.out.println("--------------------------------------------------------");
+                        System.out.print("Ingresa tu nueva contraseña: ");
+                        String contrasenia = pedirContrasenia();
+                        servUsuario.modificarDatosUsuario(user, contrasenia, opcion);
+                        System.out.println("--------------------------------------------------------");
+                        break;
+                    case "4":
+                        System.out.println("--------------------------------------------------------");
+                        System.out.print("Ingresa tu nueva ubicacion: ");
+                        String ubicacion = pedirUbicacion();
+                        servUsuario.modificarDatosUsuario(user, ubicacion, opcion);
+                        System.out.println("--------------------------------------------------------");
+                        break;
+                    case "0":
+                        break;
+                    default:
+                        break;
+                }
+            } while(!opcion.equals("0"));
+        } catch (CorreoExisteException e){
+            System.out.println(e.getMessage());
+        }
     }
 
+    private void mostrarModificados(Usuario user){
 
-    private void  pedirNuevoCorreo(String correo){
-        servUsuario.nuevoCorreo(correo);
     }
+
 }
