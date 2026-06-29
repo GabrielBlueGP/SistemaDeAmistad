@@ -2,6 +2,16 @@ package ConsolaEscritura;
 
 public class Textos {
 
+    public static void menuIngreso(){
+        System.out.println("========================================================");
+        System.out.println("                  Menu de ingreso");
+        System.out.println("--------------------------------------------------------");
+        System.out.println("");
+        System.out.println("1. Iniciar sesión");
+        System.out.println("2. Registrarse");
+        System.out.println("0. Cerrar sistema");
+    }
+
     public static void menuUsuario(){
         System.out.println("========================================================");
         System.out.println("                  Menu de usuario");
@@ -17,6 +27,8 @@ public class Textos {
     }
 
     public static void modificarPerfilUsuario(){
+        System.out.println("--------------------------------------------------------");
+        System.out.println("                  Modificar perfil");
         System.out.println("1. Nombre");
         System.out.println("2. Correo");
         System.out.println("3. Contraseña");

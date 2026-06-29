@@ -25,8 +25,8 @@ public class ControlUsuario {
             String ubicacion = pedirUbicacion();
             Usuario usuario = new Usuario(nombre, idUsuario, correo, contrasenia, ubicacion);
             servUsuario.registrarUsuario(usuario);
-            servUsuario.loginAutomatico(correo, contrasenia);
             System.out.println("Usuario registrado correctamente");
+            menuDeUsuario(usuario);
         } catch (IDExisteException e){
             System.out.println(e.getMessage());
         } catch (CorreoExisteException e){
@@ -61,6 +61,33 @@ public class ControlUsuario {
         if (intentos == 0){
             System.out.println("Fin de intentos. Acceso denegado");
         }
+        menuDeUsuario(user);
+    }
+
+    public void menuIngreso(){
+        String opcion;
+        do {
+            Textos.menuIngreso();
+            System.out.print("Ingrese su opcion: ");
+            opcion = Consola.teclado.nextLine();
+            switch (opcion){
+                case "1":
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("                  Iniciando sesion");
+                    System.out.println("--------------------------------------------------------");
+                    menuSesion();
+                    break;
+                case "2":
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("             Registrando nuevo usuario");
+                    System.out.println("--------------------------------------------------------");
+                    menuRegistro();
+                    break;
+                default:
+
+                    break;
+            }
+        } while (!opcion.equals("0"));
     }
 
     public void menuDeUsuario(Usuario user){
@@ -72,16 +99,11 @@ public class ControlUsuario {
             switch (opcion) {
                 case "1":
                     System.out.println("--------------------------------------------------------");
-                    System.out.println("                  perfil de usuario\n");
+                    System.out.println("                   Perfil publico");
                     System.out.println(servUsuario.mostrarPerfil(user.getIdUsuario()));
-                    System.out.println("--------------------------------------------------------");
                     break;
                 case "2":
-                    System.out.println("--------------------------------------------------------");
-                    System.out.println("                  Modificar perfil\n");
-                    System.out.println("--------------------------------------------------------");
-                    break;
-                case "0":
+                    modificarUsuario(user);
                     break;
                 default:
                     break;
@@ -134,7 +156,7 @@ public class ControlUsuario {
         do {
             System.out.print("Ingrese su ubicación: ");
             ubicacion = Consola.teclado.nextLine();
-            if(!ubicacion.matches("[a-zA-Z0-9]+")){
+            if(!ubicacion.matches("[a-zA-Z0-9 ]+")){
                 System.out.println("Ubicacion invalida, re ingresela por favor");
             }
 
@@ -156,32 +178,36 @@ public class ControlUsuario {
                         System.out.print("Ingrese su nuevo nombre: ");
                         String nombre = Consola.teclado.nextLine();
                         servUsuario.modificarDatosUsuario(user, nombre, opcion);
-                        System.out.println("--------------------------------------------------------");
+                        mostrarModificados(user);
                         break;
                     case "2":
                         System.out.println("--------------------------------------------------------");
                         System.out.print("Ingresa tu nuevo correo: ");
                         String correo = pedirCorreo();
                         servUsuario.modificarDatosUsuario(user, correo, opcion);
-                        System.out.println("--------------------------------------------------------");
+                        mostrarModificados(user);
                         break;
                     case "3":
                         System.out.println("--------------------------------------------------------");
                         System.out.print("Ingresa tu nueva contraseña: ");
                         String contrasenia = pedirContrasenia();
                         servUsuario.modificarDatosUsuario(user, contrasenia, opcion);
-                        System.out.println("--------------------------------------------------------");
+                        mostrarModificados(user);
                         break;
                     case "4":
                         System.out.println("--------------------------------------------------------");
-                        System.out.print("Ingresa tu nueva ubicacion: ");
+                        System.out.print("Ingresa tu nueva ubicación: ");
                         String ubicacion = pedirUbicacion();
                         servUsuario.modificarDatosUsuario(user, ubicacion, opcion);
-                        System.out.println("--------------------------------------------------------");
+                        mostrarModificados(user);
                         break;
                     case "0":
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("Volviendo...");
                         break;
                     default:
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("Opcion no reconocida, reintentar");
                         break;
                 }
             } while(!opcion.equals("0"));
@@ -191,7 +217,12 @@ public class ControlUsuario {
     }
 
     private void mostrarModificados(Usuario user){
-
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Perfil de usuario tras las modificaciones: ");
+        System.out.println("Nombre: "+user.getNombre());
+        System.out.println("Correo: "+user.getCorreo());
+        System.out.println("Contraseña: "+user.getContrasenia());
+        System.out.println("Ubicación: "+user.getUbicacion());
     }
 
 }

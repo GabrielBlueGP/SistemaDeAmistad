@@ -24,20 +24,18 @@ public class ServicioUsuario {
         repoUsuario.guardar(usuario);
     }
 
+    public void precargarUsuarios(){
+        registrarUsuario(new Usuario("Gabriel", "@Gabriel", "gabrielpabon@gmail.com", "1234", "Buenos Aires"));
+        registrarUsuario(new Usuario("Chris", "@Christian", "chirstian@gmail.com", "1234", "Buenos Aires"));
+        registrarUsuario(new Usuario("Fabi", "@Fabian", "Fabian@gmail.com", "1234", "La Pampa"));
+    }
+
     public Usuario hacerLogin(String correo){
         Usuario user = repoUsuario.buscarPorCorreo(correo);
         if(user == null){
             throw new UsuarioNoEncontrado("El usuario no fue encontrado");
         }
         return user;
-    }
-
-    public Usuario loginAutomatico(String correo, String contrasenia){
-        Usuario user = repoUsuario.buscarPorCorreo(correo);
-        if(user != null && user.getContrasenia().equals(contrasenia)){
-            return user;
-        }
-        return null;
     }
 
     public Usuario mostrarPerfil(String idUsuario){
