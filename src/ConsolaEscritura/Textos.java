@@ -36,4 +36,11 @@ public class Textos {
         System.out.println("0. Volver");
         System.out.println("--------------------------------------------------------");
     }
+
+    public static void menuConversacion(){
+        System.out.println("                 Opciones para charlar:");
+        System.out.println("1. Mensajear");
+        System.out.println("2. Hablar de un tema");
+        System.out.println("0. Terminar conversacion");
+    }
 }

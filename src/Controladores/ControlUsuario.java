@@ -6,13 +6,16 @@ import Excepciones.CorreoExisteException;
 import Excepciones.IDExisteException;
 import Excepciones.UsuarioNoEncontrado;
 import ManualUsuario.Usuario;
+import Servicios.ServicioConversacion;
 import Servicios.ServicioUsuario;
 
 public class ControlUsuario {
     private ServicioUsuario servUsuario;
+    private ServicioConversacion servConversacion;
 
-    public ControlUsuario(ServicioUsuario servicioUsuario){
+    public ControlUsuario(ServicioUsuario servicioUsuario, ServicioConversacion servicioConversacion){
         this.servUsuario = servicioUsuario;
+        this.servConversacion = servConversacion;
     }
 
     public void menuRegistro(){
@@ -104,6 +107,14 @@ public class ControlUsuario {
                     break;
                 case "2":
                     modificarUsuario(user);
+                    break;
+                case "3":
+
+                    break;
+
+                case "5":
+                    System.out.println("--------------------------------------------------------");
+                    System.out.println("                    Buscando platica");
                     break;
                 default:
                     break;

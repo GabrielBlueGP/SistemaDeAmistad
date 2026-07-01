@@ -7,6 +7,9 @@ public class TemaConversacion {
 
     public TemaConversacion(){
         temas = new ArrayList<>();
+    }
+
+    public void precargaTemas(){
         temas.add("Cocina");
         temas.add("Electronica");
         temas.add("Videojuegos");
@@ -19,6 +22,10 @@ public class TemaConversacion {
 
     public void agregarTema(String tematica){
         temas.add(tematica);
+    }
+
+    public void quitarTema(String tematica){
+        temas.remove(tematica);
     }
 
     public void alistarTemas(){
