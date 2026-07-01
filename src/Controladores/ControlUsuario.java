@@ -11,11 +11,11 @@ import Servicios.ServicioUsuario;
 
 public class ControlUsuario {
     private ServicioUsuario servUsuario;
-    private ServicioConversacion servConversacion;
+    private ControlConversacion contConversacion;
 
-    public ControlUsuario(ServicioUsuario servicioUsuario, ServicioConversacion servicioConversacion){
+    public ControlUsuario(ServicioUsuario servicioUsuario, ControlConversacion controlConversacion){
         this.servUsuario = servicioUsuario;
-        this.servConversacion = servConversacion;
+        this.contConversacion = controlConversacion;
     }
 
     public void menuRegistro(){
@@ -115,6 +115,7 @@ public class ControlUsuario {
                 case "5":
                     System.out.println("--------------------------------------------------------");
                     System.out.println("                    Buscando platica");
+                    contConversacion.buscarCharla(user);
                     break;
                 default:
                     break;

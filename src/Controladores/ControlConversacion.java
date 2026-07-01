@@ -2,9 +2,14 @@ package Controladores;
 
 import ConsolaEscritura.Consola;
 import ConsolaEscritura.Textos;
+import Conversaciones.Mensaje;
+import Conversaciones.MensajesPrecargados;
+import Conversaciones.TemaConversacion;
 import Excepciones.UsuarioNoEncontrado;
 import ManualUsuario.Usuario;
 import Servicios.ServicioConversacion;
+
+import java.util.InputMismatchException;
 
 public class ControlConversacion {
     private ServicioConversacion servConversacion;
@@ -38,11 +43,46 @@ public class ControlConversacion {
         System.out.println("--------------------------------------------------------");
         System.out.println(emisor.getNombre()+" esta conversando con "+ receptor.getNombre()+"\n");
         String opcion;
+        MensajesPrecargados mensajes = new MensajesPrecargados();
+        TemaConversacion temas = new TemaConversacion();
+        int interes = 20;
+        int nivelCharla = 0;
         do {
             Textos.menuConversacion();
-            System.out.println("");
+            System.out.println("Ingrese la opcion");
             opcion = Consola.teclado.nextLine();
-        } while (!opcion.equals("0"));
-
+            switch (opcion){
+                case "1":
+                    menuMensajes(mensajes);
+                    break;
+                case "2":
+                    break;
+                default:
+                    break;
+            }
+        } while (!opcion.equals("0") && interes > 0);
     }
+
+    private void menuMensajes(MensajesPrecargados mensajes){
+        mensajes.mostrarMensajes();
+        int opcion;
+        boolean eligiendo = true;
+        do{
+            try{
+                System.out.print("Ingrese el numero del mensaje: ");
+                opcion = Consola.teclado.nextInt();
+                Consola.teclado.nextLine();
+                if(opcion >= 1 && opcion <= mensajes.cantidadMensajes()){
+                    mensajes.obtenerMensaje(opcion -1);
+                    eligiendo = false;
+                } else {
+                    System.out.println("El numero ingresado no pertenece a ningun mensaje");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Solo es valido ingresar numeros.");
+                Consola.teclado.nextLine();
+            }
+        } while (eligiendo);
+    }
+
 }
