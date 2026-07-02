@@ -82,6 +82,10 @@ public class Usuario {
         this.ubicacion = ubicacion;
     }
 
+    public void agregarRelacion(RelacionUsuario relacion){
+        relaciones.add(relacion);
+    }
+
     @Override
     public String toString() {
         return "Usuario: "+nombre+"\n"+idUsuario+"\nUbicacion: "+ubicacion+"\nSe unio: "+fechaCreacion;

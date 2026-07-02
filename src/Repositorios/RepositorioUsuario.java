@@ -1,5 +1,6 @@
 package Repositorios;
 
+import ManualUsuario.RelacionUsuario;
 import ManualUsuario.Usuario;
 
 import java.util.HashMap;
@@ -68,4 +69,16 @@ public class RepositorioUsuario {
     public void nuevaUbicacion(Usuario user, String ubicacion){
         user.setUbicacion(ubicacion);
     }
+
+    public RelacionUsuario buscarRelacion(Usuario user, String idUserRel){
+        for(RelacionUsuario relacion: user.getRelaciones()){
+            if(relacion.getUsuarioRelacionado().getIdUsuario().equals(idUserRel)){
+                return relacion;
+            }
+        }
+        return null;
+    }
+
+
+
 }

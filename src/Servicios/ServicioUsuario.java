@@ -3,6 +3,7 @@ package Servicios;
 import Excepciones.CorreoExisteException;
 import Excepciones.IDExisteException;
 import Excepciones.UsuarioNoEncontrado;
+import ManualUsuario.RelacionUsuario;
 import ManualUsuario.Usuario;
 import Repositorios.RepositorioUsuario;
 
@@ -61,6 +62,11 @@ public class ServicioUsuario {
                 repoUsuario.nuevaUbicacion(user, nuevoDato);
                 break;
         }
+    }
+
+    public RelacionUsuario buscarRelacion (Usuario emisor, Usuario receptor){
+        RelacionUsuario relacion = repoUsuario.buscarRelacion(emisor, receptor.getIdUsuario());
+        return relacion;
     }
 
 }
